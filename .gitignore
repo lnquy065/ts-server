@@ -3,5 +3,3 @@ vendor/*
 
 .idea/*
 .idea/vcs.xml
-
-ts-server
