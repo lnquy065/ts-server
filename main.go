@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/jinzhu/gorm"
+	"os"
 	"ts-server/db"
 	"ts-server/models"
 )
@@ -14,7 +15,7 @@ func main() {
 	db.Pgdb.AutoMigrate(&models.Answer{}, &models.Question{})
 
 	router := NewRouter()
-	router.Run(":4000")
+	router.Run(":" + os.Getenv("PORT"))
 
 }
 
