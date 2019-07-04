@@ -5,7 +5,6 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"ts-server/configs"
-	"ts-server/models"
 )
 
 var Pgdb gorm.DB
@@ -18,8 +17,6 @@ func PgConnect() {
 		fmt.Println("DB error: " + err.Error())
 	} else {
 		pgdb.SingularTable(true)
-
-		pgdb.AutoMigrate(models.Question{}, models.Exam{})
 
 		Pgdb = *pgdb
 	}
