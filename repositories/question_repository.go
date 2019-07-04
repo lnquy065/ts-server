@@ -34,3 +34,19 @@ func (this *QuestionRepository) FindAll() ([]*models.Question, error) {
 
 	return questionList, nil
 }
+
+func (this *QuestionRepository) GetRandom(limit int64, questionType string, licenseType string) ([]*models.Question, error) {
+	var questionList []*models.Question
+
+	err := db.Pgdb.Preload("Answers").
+		Where("question_type = ?", questionType).
+		Where("license_type = ?", licenseType).
+		Order("random()").
+		Limit(limit).
+		Find(&questionList).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return questionList, nil
+}

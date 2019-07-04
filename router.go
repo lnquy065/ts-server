@@ -31,6 +31,11 @@ func NewRouter() *gin.Engine {
 			examsWithQ.GET("/:id", examCtrl.GetByIdWithQuestions)
 			examsWithQ.GET("/", examCtrl.GetAllWithQuestions)
 		}
+
+		examsWithQRandom := apiV1.Group("exams/random")
+		{
+			examsWithQRandom.GET("/licenseType/:licenseType", examCtrl.GetRandom)
+		}
 	}
 	return router
 }

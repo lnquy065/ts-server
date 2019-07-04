@@ -50,3 +50,25 @@ func (this *ExamController) GetAllWithQuestions(ctx *gin.Context) {
 	}
 	ctx.JSON(http.StatusOK, examList)
 }
+
+func (this *ExamController) GetRandom(ctx *gin.Context) {
+	licenseType := ctx.Params.ByName("licenseType")
+	var pack1Type, pack2Type string
+	var pack1QuantityInt, pack2QuantityInt int64
+
+	switch licenseType {
+	case "B2":
+		{
+			pack1Type = "LT"
+			pack1QuantityInt = 15
+			pack2Type = "TH"
+			pack2QuantityInt = 15
+		}
+	}
+
+	exam, err := this.ExamService.GetRandom(pack1Type, pack1QuantityInt, pack2Type, pack2QuantityInt, licenseType)
+	if err != nil {
+		ctx.String(http.StatusNotFound, "NotFound")
+	}
+	ctx.JSON(http.StatusOK, exam)
+}

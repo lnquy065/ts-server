@@ -15,7 +15,8 @@ func CreateQuestionController() *apis.QuestionController {
 
 func CreateExamController() *apis.ExamController {
 	examRepository := repositories.NewExamRepository()
-	examService := services.NewExamService(examRepository)
+	questionRepository := repositories.NewQuestionRepository()
+	examService := services.NewExamService(examRepository, questionRepository)
 	examController := apis.NewExamController(examService)
 	return examController
 }
