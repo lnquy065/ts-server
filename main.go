@@ -12,10 +12,19 @@ func main() {
 
 	db.PgConnect()
 
-	db.Pgdb.AutoMigrate(&models.Answer{}, &models.Question{})
+	db.Pgdb.AutoMigrate(
+		&models.Exam{},
+		&models.Answer{},
+		&models.Question{})
 
 	router := NewRouter()
-	router.Run(":" + os.Getenv("PORT"))
+	var port string
+	if port = "4000"; os.Getenv("PORT") != "" {
+		port = os.Getenv("PORT")
+	}
+
+	fmt.Println("Server will start at: " + port)
+	router.Run(":" + port)
 
 }
 
