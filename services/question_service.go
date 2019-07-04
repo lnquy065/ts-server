@@ -17,3 +17,7 @@ func NewQuestionService(questionRepo *repositories.QuestionRepository) *Question
 func (this *QuestionService) GetByIndex(index int64) (*models.Question, error) {
 	return this.QuestionRepo.FindOneByIndex(index)
 }
+
+func (this *QuestionService) GetAll() ([]*models.Question, error) {
+	return this.QuestionRepo.FindAll()
+}

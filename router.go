@@ -15,6 +15,7 @@ func NewRouter() *gin.Engine {
 		questions := apiV1.Group("questions")
 		{
 			questions.GET("/:index", questionCtrl.GetByIndex)
+			questions.GET("/", questionCtrl.GetAll)
 		}
 	}
 	return router

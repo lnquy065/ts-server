@@ -23,5 +23,14 @@ func (this *QuestionController) GetByIndex(ctx *gin.Context) {
 	if e != nil {
 		ctx.String(http.StatusNotFound, "NotFound")
 	}
+	//obj, _ := json.Marshal(q)
 	ctx.JSON(http.StatusOK, q)
+}
+
+func (this *QuestionController) GetAll(ctx *gin.Context) {
+	questionList, error := this.QuestionSvc.GetAll()
+	if error != nil {
+		ctx.String(http.StatusNotFound, "NotFound")
+	}
+	ctx.JSON(http.StatusOK, questionList)
 }

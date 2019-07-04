@@ -23,3 +23,14 @@ func (this *QuestionRepository) FindOneByIndex(index int64) (*models.Question, e
 
 	return &q, nil
 }
+
+func (this *QuestionRepository) FindAll() ([]*models.Question, error) {
+	var questionList []*models.Question
+
+	err := db.Pgdb.Preload("Answers").Find(&questionList).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return questionList, nil
+}
