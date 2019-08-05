@@ -17,6 +17,7 @@ func PgConnect() {
 		fmt.Println("DB error: " + err.Error())
 	} else {
 		pgdb.SingularTable(true)
+		pgdb.LogMode(true)
 
 		Pgdb = *pgdb
 	}
