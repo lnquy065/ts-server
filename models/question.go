@@ -10,6 +10,7 @@ type Question struct {
 	QuestionImg  string
 	QuestionType string
 	LicenseType  string
+	Hint         string
 	Index        int
 	Answers      []Answer `gorm:"foreignkey:QuestionId"`
 }
